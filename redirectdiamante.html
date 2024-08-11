@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecionamento</title>
+    <script>
+        function redirecionar() {
+            // Verifica se o cookie 'visitado' está definido
+            var visitado = getCookie('visitado');
+            
+            if (!visitado) {
+                // Se o cookie não estiver definido, redireciona para a primeira URL após 5 segundos
+                setTimeout(function() {
+                    window.location.href = 'sovazados.online/pacoteediamante.html';
+                    
+                    // Define o cookie 'visitado' para indicar que a pessoa já visitou
+                    setCookie('visitado', 'true', 365);
+                }, 5000);
+            } else {
+                // Se o cookie estiver definido, redireciona para a segunda URL após 5 segundos
+                setTimeout(function() {
+                    window.location.href = 'https://drive.google.com/drive/folders/1rFC0xqdUqdHh_gW6_GXohQPeSnW4zla0';
+                }, 5000);
+            }
+        }
+
+        // Função para obter o valor de um cookie
+        function getCookie(nome) {
+            var nomeEQ = nome + "=";
+            var cookies = document.cookie.split(';');
+            for(var i=0;i < cookies.length;i++) {
+                var c = cookies[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nomeEQ) == 0) return c.substring(nomeEQ.length,c.length);
+            }
+            return null;
+        }
+
+        // Função para definir um cookie
+        function setCookie(nome, valor, dias) {
+            var data = new Date();
+            data.setTime(data.getTime() + (dias*24*60*60*1000));
+            var expires = "expires=" + data.toUTCString();
+            document.cookie = nome + "=" + valor + "; " + expires + "; path=/";
+        }
+    </script>
+</head>
+<body onload="redirecionar()">
+    <p>Aguarde 5 segundos... Redirecionando em breve.</p>
+</body>
+</html>
